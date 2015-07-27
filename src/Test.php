@@ -1,4 +1,4 @@
-<?php namespace WebTastic\Test;
+<?php namespace Boschman\Test;
 
 class Test {
 
