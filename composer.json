@@ -1,0 +1,11 @@
+{
+    "name": "boschman/test",
+    "description": "Test",
+    "authors": [
+        {
+            "name": "Jeroen Boschman",
+            "email": "jeroen@webtastic.nl"
+        }
+    ],
+    "require": {}
+}
