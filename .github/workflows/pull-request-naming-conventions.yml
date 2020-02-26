@@ -1,4 +1,4 @@
-name: 'Test pull request naming conventions'
+name: 'Check pull request naming convention'
 on:
     pull_request:
         types:
