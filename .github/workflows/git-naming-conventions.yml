@@ -17,5 +17,5 @@ jobs:
             - name: Commit message
               uses: gsactions/commit-message-checker@v1
               with:
-                  pattern: '^\[[a-z]+\/[[a-z]+-[0-9]+\] .+' # Regex: allow e.g. "[feature/site-111] description"
+                  pattern: '^(Merge branch|\[[a-z]+\/[[a-z]+-[0-9]+\]) .+' # Regex: allow e.g. "[feature/site-111] description"
                   error: 'Commit message needs this structure: "[feature/site-111] description"'
