@@ -6,22 +6,23 @@ jobs:
     git-naming-conventions:
         runs-on: ubuntu-latest
         steps:
-            - name: Branch name
-              uses: deepakputhraya/action-branch-name@master
-              with:
-                  regex: '^([a-z])+\/[[a-z]+-[0-9]+' # Regex: allow e.g. "feature/site-111"
-                  allowed_prefixes: 'feature,hotfix' # All branches should start with the given prefix
-                  ignore: master,develop # Ignore exactly matching branch names from convention
-            - name: Commit message
-              uses: gsactions/commit-message-checker@v1
-              with:
-                  pattern: '^(Merge|\[[a-z]+\/[[a-z]+-[0-9]+\]) .+' # Regex: allow e.g. "[feature/site-111] description"
-                  error: 'Commit message needs this structure: "[feature/site-111] description"'
-            - name: Slack integration
-              if: failure()
-              uses: 8398a7/action-slack@v2
-              with:
-                  status: ${{ job.status }}
-                  fields: repo,message,action,author
-              env:
-                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+            -   name: Branch name
+                uses: deepakputhraya/action-branch-name@master
+                with:
+                    regex: '^([a-z])+\/[[a-z]+-[0-9]+' # Regex: allow e.g. "feature/site-111"
+                    allowed_prefixes: 'feature,hotfix' # All branches should start with the given prefix
+                    ignore: master,develop # Ignore exactly matching branch names from convention
+            -   name: Commit message
+                uses: gsactions/commit-message-checker@v1
+                with:
+                    pattern: '^(Merge|\[[a-z]+\/[[a-z]+-[0-9]+\]) .+' # Regex: allow e.g. "[feature/site-111] description"
+                    error: 'Commit message needs this structure: "[feature/site-111] description"'
+            -   name: Slack integration
+                if: failure()
+                uses: 8398a7/action-slack@v2
+                with:
+                    status: ${{ job.status }}
+                    fields: repo,message,action,author
+                env:
+                    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
