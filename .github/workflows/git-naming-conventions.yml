@@ -19,10 +19,10 @@ jobs:
                     error: 'Commit message needs this structure: "[feature/site-111] description"'
             -   name: Slack integration
                 if: failure()
-                uses: 8398a7/action-slack@v2
+                uses: webtastic/action-slack@master
                 with:
                     status: ${{ job.status }}
-                    fields: repo,message,action,author
+                    author_name: ''
                 env:
                     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-                    GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
