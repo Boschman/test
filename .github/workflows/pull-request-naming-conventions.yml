@@ -1,0 +1,17 @@
+name: 'Test git naming conventions'
+on:
+    pull_request:
+        types:
+            - opened
+            - edited
+            - reopened
+            - synchronize
+
+jobs:
+    pull-request-naming-conventions:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Pull request name
+              uses: deepakputhraya/action-pr-title@master
+              with:
+                  regex: '^\[[A-Z]+-[0-9]+\] .+' # Regex: allow e.g. "[SITE-111] description"

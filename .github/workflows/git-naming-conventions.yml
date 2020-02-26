@@ -1,0 +1,22 @@
+name: 'Test git naming conventions'
+on:
+    push:
+        branches-ignore:
+            - master
+            - develop
+
+jobs:
+    git-naming-conventions:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Branch name
+              uses: deepakputhraya/action-branch-name@master
+              with:
+                  regex: '^([a-z])+\/[[a-z]+-[0-9]+' # Regex: allow e.g. "feature/site-111"
+                  allowed_prefixes: 'feature,hotfix' # All branches should start with the given prefix
+                  ignore: master,develop # Ignore exactly matching branch names from convention
+            - name: Commit message
+              uses: gsactions/commit-message-checker@v1
+              with:
+                  pattern: '^\[[a-z]+\/[[a-z]+-[0-9]+\] .+' # Regex: allow e.g. "[feature/site-111] description"
+                  error: 'Commit message needs this structure: "[feature/site-111] description"'
